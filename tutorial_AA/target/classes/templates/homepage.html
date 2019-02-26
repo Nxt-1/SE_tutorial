@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tutorial page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<span th:text="#{homepage.hello}"/> <br/>
+<span th:text="#{homepage.thymeleaf}"/>
+<br/> <table>
+    <tr>
+        <th >NAME</th>
+        <th>ROLE</th>
+        <th>PRIVILEGE</th>
+    </tr>
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.firstName} + ' ' + ${user.lastName}"/>
+        <td>
+            <table>
+                <tr th:each="role : ${user.roles}">
+                    <td th:text="${role.name}"/>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <div th:each="role : ${user.roles}">
+                <table>
+                    <tr th:each="priv : ${role.privileges}">
+                        <td th:text="${priv.name}"/>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>
